@@ -14,6 +14,14 @@ buildscript {
     }
 }
 
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force("org.xerial:sqlite-jdbc:3.34.0")
+        }
+    }
+}
+
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }

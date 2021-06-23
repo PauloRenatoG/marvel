@@ -1,11 +1,11 @@
 package com.example.marvel.presentation.ui.listcharacters
 
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import com.example.marvel.domain.model.Character
 
-class ListCharactersAdapter : ListAdapter<Character, ListCharactersViewHolder>(diff) {
+class ListCharactersAdapter : PagingDataAdapter<Character, ListCharactersViewHolder>(diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCharactersViewHolder {
         return ListCharactersViewHolder.inflate(parent)

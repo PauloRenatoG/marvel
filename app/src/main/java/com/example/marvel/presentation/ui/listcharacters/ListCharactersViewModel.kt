@@ -1,6 +1,7 @@
 package com.example.marvel.presentation.ui.listcharacters
 
 import androidx.lifecycle.*
+import androidx.paging.PagingData
 import com.example.marvel.domain.model.Character
 import com.example.marvel.domain.repository.ListCharactersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,8 +19,8 @@ class ListCharactersViewModel @Inject constructor(
     val isLoading: LiveData<Boolean> get() = _isLoading
     private var _isLoading: MutableLiveData<Boolean> = MutableLiveData()
 
-    val listCharacter: LiveData<List<Character>> get() = _listCharacter
-    private var _listCharacter: MutableLiveData<List<Character>> = MutableLiveData()
+    val listCharacter: LiveData<PagingData<Character>> get() = _listCharacter
+    private var _listCharacter: MutableLiveData<PagingData<Character>> = MutableLiveData()
 
     val error: LiveData<String> get() = _error
     private var _error: MutableLiveData<String> = MutableLiveData()
@@ -30,12 +31,10 @@ class ListCharactersViewModel @Inject constructor(
             .getListCharacters()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .doOnSubscribe { _isLoading.value = true }
-            .doFinally { _isLoading.value = false }
             .subscribe({
-                _listCharacter.value = it.results
+                _listCharacter.postValue(it)
             }, {
-                _error.value = it.message
+                _error.postValue(it.message)
             })
             .let(disposable::add)
     }

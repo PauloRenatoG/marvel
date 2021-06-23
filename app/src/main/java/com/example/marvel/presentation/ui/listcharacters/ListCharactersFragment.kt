@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.paging.LoadState
 import com.example.marvel.databinding.FragmentListCharactersBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,16 +36,19 @@ class ListCharactersFragment : Fragment() {
     private fun subscribeUi() {
         with(viewModel) {
             listCharacter.observe(viewLifecycleOwner, {
-                adapterCharacters.submitList(it)
+                adapterCharacters.submitData(lifecycle, it)
             })
             isLoading.observe(viewLifecycleOwner, { isLoading ->
                 binding?.loading?.visibility = if (isLoading) View.VISIBLE else View.GONE
             })
             error.observe(viewLifecycleOwner, { error ->
-                binding?.textError?.visibility = View.VISIBLE
-                binding?.textError?.text = error
+                Toast.makeText(context, error, Toast.LENGTH_LONG).show()
             })
         }
         binding?.recyclerCharacter?.adapter = adapterCharacters
+        adapterCharacters.addLoadStateListener { state ->
+            binding?.loading?.visibility =
+                if (state.refresh is LoadState.Loading) View.VISIBLE else View.GONE
+        }
     }
 }

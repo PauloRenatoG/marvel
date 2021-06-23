@@ -12,15 +12,15 @@ class ListCharactersViewHolder(
     private val binding: ListItemCharacterBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(character: Character) {
+    fun bind(character: Character?) {
         binding.run {
-            textName.text = character.name
-            setImage(character.thumbnail)
+            textName.text = character?.name
+            setImage(character?.thumbnail)
         }
     }
 
     private fun setImage(thumbnail: Image?) {
-        Glide.with(binding.root.context)
+        Glide.with(binding.imageView.context)
             .load(thumbnail?.path?.plus("/landscape_xlarge.jpg"))
             .centerCrop()
             .into(binding.imageView)

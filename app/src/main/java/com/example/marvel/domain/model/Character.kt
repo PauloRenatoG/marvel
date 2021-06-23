@@ -1,11 +1,22 @@
 package com.example.marvel.domain.model
 
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "character")
 data class Character(
+    @PrimaryKey
     val id: Int?,
     val name: String?,
+    @Embedded
     val thumbnail: Image?,
+    @Embedded
     val comics: ComicList?,
+    @Embedded
     val series: SeriesList?,
+    @Embedded
     val stories: StoryList?,
+    @Embedded
     val events: EventList?
 )
