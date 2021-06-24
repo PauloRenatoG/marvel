@@ -3,6 +3,7 @@ package com.example.marvel.domain.model
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "character")
 data class Character(
@@ -19,4 +20,4 @@ data class Character(
     val stories: StoryList?,
     @Embedded
     val events: EventList?
-)
+) : Serializable

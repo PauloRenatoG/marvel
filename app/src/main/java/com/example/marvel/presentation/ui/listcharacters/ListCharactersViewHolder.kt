@@ -12,10 +12,13 @@ class ListCharactersViewHolder(
     private val binding: ListItemCharacterBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(character: Character?) {
+    fun bind(character: Character?, onItemClicked: (Character?) -> Unit) {
         binding.run {
             textName.text = character?.name
             setImage(character?.thumbnail)
+            root.setOnClickListener {
+                onItemClicked.invoke(character)
+            }
         }
     }
 

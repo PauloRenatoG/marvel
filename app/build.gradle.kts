@@ -82,8 +82,8 @@ dependencies {
     implementation("androidx.room:room-rxjava2:2.3.0")
 
     // Paging
-    implementation("androidx.paging:paging-runtime-ktx:3.0.0")
-    implementation("androidx.paging:paging-rxjava2-ktx:3.0.0")
+    implementation("androidx.paging:paging-runtime-ktx:2.1.2")
+    implementation("androidx.paging:paging-rxjava2-ktx:2.1.2")
 
     // Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")

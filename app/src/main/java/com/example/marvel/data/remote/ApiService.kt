@@ -2,7 +2,7 @@ package com.example.marvel.data.remote
 
 import com.example.marvel.domain.model.CharacterDataContainer
 import com.example.marvel.domain.model.DataWrapper
-import io.reactivex.Single
+import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,7 +14,7 @@ interface ApiService {
         @Query("apikey") apiKey: String = API_KEY,
         @Query("hash") hash: String = HASH,
         @Query("offset") offset: Int? = 0
-    ): Single<DataWrapper<CharacterDataContainer>>
+    ): Observable<DataWrapper<CharacterDataContainer>>
 
     companion object {
         private const val TIMESTAMP = 1
