@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.marvel.R
 import com.example.marvel.databinding.ListItemCharacterBinding
 import com.example.marvel.domain.model.Character
 import com.example.marvel.domain.model.Image
@@ -25,6 +26,7 @@ class ListCharactersViewHolder(
     private fun setImage(thumbnail: Image?) {
         Glide.with(binding.imageView.context)
             .load(thumbnail?.path?.plus("/landscape_xlarge.jpg"))
+            .placeholder(R.drawable.marvel_logo)
             .centerCrop()
             .into(binding.imageView)
     }

@@ -1,7 +1,7 @@
 package com.example.marvel.domain.model
 
-data class CharacterDataContainer(
+data class DataContainer<out T : Any>(
     val offset: Int?,
     val limit: Int?,
-    val results: List<Character>?
+    val results: List<T>?
 )

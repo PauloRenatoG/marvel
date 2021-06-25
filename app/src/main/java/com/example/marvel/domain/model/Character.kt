@@ -10,6 +10,7 @@ data class Character(
     @PrimaryKey
     val id: Int?,
     val name: String?,
+    val description: String?,
     @Embedded
     val thumbnail: Image?,
     @Embedded
