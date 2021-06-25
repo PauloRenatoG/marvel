@@ -1,7 +1,7 @@
 package com.example.marvel.presentation.di
 
-import com.example.marvel.data.repository.ListCharactersRepositoryImpl
-import com.example.marvel.domain.repository.ListCharactersRepository
+import com.example.marvel.data.repository.*
+import com.example.marvel.domain.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,4 +13,16 @@ interface RepositoryModule {
 
     @Binds
     fun bindListCharactersRepository(repository: ListCharactersRepositoryImpl): ListCharactersRepository
+
+    @Binds
+    fun bindComicRepository(repository: ComicRepositoryImpl): ComicRepository
+
+    @Binds
+    fun bindSerieRepository(repository: SerieRepositoryImpl): SerieRepository
+
+    @Binds
+    fun bindStorieRepository(repository: StorieRepositoryImpl): StorieRepository
+
+    @Binds
+    fun bindEventRepository(repository: EventRepositoryImpl): EventRepository
 }

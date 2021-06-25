@@ -1,9 +1,9 @@
 package com.example.marvel.domain.repository
 
-import androidx.paging.PagingData
 import com.example.marvel.domain.model.Character
+import com.example.marvel.domain.model.DataContainer
 import io.reactivex.Observable
 
 interface ListCharactersRepository {
-    fun getListCharacters(): Observable<PagingData<Character>>
+    fun getListCharacters(offset: Int): Observable<DataContainer<Character>>
 }

@@ -1,18 +1,20 @@
 package com.example.marvel.presentation.ui.listcharacters
 
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.marvel.domain.model.Character
 
-class ListCharactersAdapter : PagingDataAdapter<Character, ListCharactersViewHolder>(diff) {
+class ListCharactersAdapter(
+    private val onItemClicked: (Character?) -> Unit
+) : PagedListAdapter<Character, ListCharactersViewHolder>(diff) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListCharactersViewHolder {
         return ListCharactersViewHolder.inflate(parent)
     }
 
     override fun onBindViewHolder(holder: ListCharactersViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onItemClicked)
     }
 
     companion object {
